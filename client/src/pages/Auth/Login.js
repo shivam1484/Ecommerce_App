@@ -1,4 +1,3 @@
-import { REACT_API } from "../../hooks/helper";
 import React, { useState } from "react";
 import Layout from "./../../components/Layout/Layout";
 import axios from "axios";
@@ -18,7 +17,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${REACT_API}/api/v1/auth/login`, {
+      const res = await axios.post("/api/v1/auth/login", {
         email,
         password,
       });
@@ -41,13 +40,14 @@ const Login = () => {
   };
   return (
     <Layout title="Register - Ecommer App">
-      <div className="form-container ">
+      <div className="form-container " style={{ minHeight: "90vh" }}>
         <form onSubmit={handleSubmit}>
           <h4 className="title">LOGIN FORM</h4>
 
           <div className="mb-3">
             <input
               type="email"
+              autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="form-control"
@@ -70,7 +70,7 @@ const Login = () => {
           <div className="mb-3">
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn forgot-btn"
               onClick={() => {
                 navigate("/forgot-password");
               }}
